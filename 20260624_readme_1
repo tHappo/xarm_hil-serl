@@ -29,18 +29,11 @@ cd /home/haoce/VLA_RL_Wyangchuan/hilserl/20260624/xarm_hil-serl-main
 python examples/record_success_fail.py
 
 ===========================================================
+import easyhid
 
-cd /home/haoce/VLA_RL_Wyangchuan/hilserl/20260624/xarm_hil-serl-main
-conda activate hilserl
+hid = easyhid.Enumeration()
+devices = hid.find()
+print("HID devices:", len(devices))
 
-export HIL_SERL_ROOT=$PWD
-export PYTHONPATH=$HIL_SERL_ROOT:$HIL_SERL_ROOT/examples:$HIL_SERL_ROOT/serl_robot_infra:${PYTHONPATH:-}
-
-
-python - <<'PY'
-from experiments.usb_pickup_insertion.config import TrainConfig
-
-cfg = TrainConfig()
-print("TrainConfig import success")
-print("SERVER_URL:", cfg.env.SERVER_URL if hasattr(cfg, "env") else "check config manually")
-PY
+for d in devices:
+    print(d)
