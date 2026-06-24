@@ -1,0 +1,17 @@
+python - <<'PY'
+from examples.experiments.usb_pickup_insertion.config import TrainConfig
+
+cfg = TrainConfig()
+env = cfg.get_environment(
+    fake_env=False,
+    save_video=False,
+    classifier=False,
+)
+
+print("env created")
+print("action space:", env.action_space)
+print("observation space:", env.observation_space)
+PY
+
+===========================================================
+
